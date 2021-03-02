@@ -20,10 +20,6 @@ def Add_Book(Title,Author,Status):
 def Delete_Book(id):
     cursor.execute('SELECT title,author FROM dbo.books_store where book_id=?',id)
     r=''
-    for row in cursor:
-        if len(row)!=0:
-            r=row
-            print(r)
     sql="""Delete from dbo.books_store where book_id=?"""
     cursor.execute(sql,id)
     conn.commit()
@@ -42,7 +38,6 @@ def View_Book():
 #View_Book()
 
 def Issue_Book(id):
-    print("I'm in view")
     cursor.execute('SELECT * FROM dbo.books_store where book_id=? and status=\'Available\'', id)
     for row in cursor:
         print(len(row))
@@ -57,7 +52,6 @@ def Issue_Book(id):
 #Issue_Book(14)
 
 def Return_Book(id):
-    print("I'm in view")
     cursor.execute('SELECT * FROM dbo.books_store where book_id=? and status=\'Not Available\'', id)
     for row in cursor:
         print(len(row))
